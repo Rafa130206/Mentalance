@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR" th:fragment="layout (title, content)">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">Mentalance</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<header class="navbar">
+    <div class="navbar__brand">
+        <span th:text="#{app.brand}">Mentalance</span>
+    </div>
+    <nav class="navbar__menu">
+        <a th:href="@{/dashboard}">Dashboard</a>
+        <a th:href="@{/checkins}">Check-ins</a>
+        <a th:href="@{/checkins/novo}">Novo Check-in</a>
+        <a th:href="@{/relatorio}">Relatórios</a>
+        <a th:if="${#authentication.principal?.username != null}"
+           th:text="${#authentication.principal.username}">Usuário</a>
+        <a th:if="${#authorization.expression('hasRole(''ADMIN'')')}"
+           th:href="@{/admin}">Admin</a>
+        <form th:action="@{/logout}" method="post" class="navbar__logout">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+            <button type="submit">Sair</button>
+        </form>
+    </nav>
+    <div class="navbar__lang">
+        <a th:href="@{${#httpServletRequest.requestURI}(lang='pt_BR')}">PT</a> |
+        <a th:href="@{${#httpServletRequest.requestURI}(lang='en_US')}">EN</a>
+    </div>
+</header>
+
+<main class="container" th:insert="${content}"></main>
+
+<footer class="footer">
+    <p>&copy; <span th:text="${#calendars.year(#calendars.createNow())}">2025</span> Mentalance</p>
+</footer>
+</body>
+</html>
+
