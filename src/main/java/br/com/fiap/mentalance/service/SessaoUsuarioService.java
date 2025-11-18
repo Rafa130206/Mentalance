@@ -19,8 +19,8 @@ public class SessaoUsuarioService {
             throw new NegocioException("Usuário não autenticado.");
         }
 
-        String username = authentication.getName();
-        return usuarioService.buscarPorUsername(username)
+        String email = authentication.getName();
+        return usuarioService.buscarPorEmail(email)
                 .orElseThrow(() -> new NegocioException("Usuário logado não encontrado."));
     }
 }

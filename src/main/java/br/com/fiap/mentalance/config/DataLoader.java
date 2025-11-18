@@ -20,11 +20,11 @@ public class DataLoader implements CommandLineRunner {
             UsuarioRegistroRequest admin = new UsuarioRegistroRequest();
             admin.setNome("Administrador");
             admin.setEmail("admin@mentalance.com");
-            admin.setUsername("admin");
             admin.setSenha("admin123");
             admin.setConfirmarSenha("admin123");
+            admin.setCargo("Administrador");
 
-            usuarioService.registrarUsuario(admin, true);
+            usuarioService.registrarUsuario(admin, false);
         }
     }
 }

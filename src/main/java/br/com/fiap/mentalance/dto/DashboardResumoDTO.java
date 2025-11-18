@@ -1,6 +1,5 @@
 package br.com.fiap.mentalance.dto;
 
-import br.com.fiap.mentalance.model.EstadoHumor;
 import lombok.Builder;
 import lombok.Value;
 
@@ -10,7 +9,7 @@ import java.util.Map;
 @Builder
 public class DashboardResumoDTO {
     long totalCheckins;
-    EstadoHumor humorPredominante;
+    String emocaoPredominante; // Agora usa String em vez de enum
     double mediaEnergia;
     double mediaSono;
     Map<String, Long> distribuicaoHumor;

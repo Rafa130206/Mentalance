@@ -24,8 +24,6 @@ public class AdminController {
         model.addAttribute("usuarios", usuarioService.listarUsuarios());
         model.addAttribute("totalUsuarios", usuarioService.contarUsuarios());
         model.addAttribute("totalCheckins", checkinService.contarCheckins());
-        model.addAttribute("mediaEnergia", checkinService.mediaEnergiaGlobal());
-        model.addAttribute("mediaSono", checkinService.mediaSonoGlobal());
         model.addAttribute("checkinsRecentes", checkinService.listarRecentesGlobal());
         return "admin";
     }

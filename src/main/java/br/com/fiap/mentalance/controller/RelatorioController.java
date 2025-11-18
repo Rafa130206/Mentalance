@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -34,7 +35,11 @@ public class RelatorioController {
         LocalDate fimEfetivo = fim != null ? fim : LocalDate.now();
         LocalDate inicioEfetivo = inicio != null ? inicio : fimEfetivo.minusDays(30);
 
-        List<Checkin> checkins = checkinService.listarPorPeriodo(usuario, inicioEfetivo, fimEfetivo);
+        // Converte LocalDate para LocalDateTime
+        LocalDateTime inicioDateTime = inicioEfetivo.atStartOfDay();
+        LocalDateTime fimDateTime = fimEfetivo.atTime(23, 59, 59);
+
+        List<Checkin> checkins = checkinService.listarPorPeriodo(usuario, inicioDateTime, fimDateTime);
 
         model.addAttribute("inicio", inicioEfetivo);
         model.addAttribute("fim", fimEfetivo);

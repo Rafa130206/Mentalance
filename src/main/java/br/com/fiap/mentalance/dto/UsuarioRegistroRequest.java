@@ -9,7 +9,7 @@ import lombok.Data;
 public class UsuarioRegistroRequest {
 
     @NotBlank
-    @Size(min = 3, max = 120)
+    @Size(min = 3, max = 100)
     private String nome;
 
     @NotBlank
@@ -17,15 +17,14 @@ public class UsuarioRegistroRequest {
     private String email;
 
     @NotBlank
-    @Size(min = 4, max = 50)
-    private String username;
-
-    @NotBlank
-    @Size(min = 6, max = 120)
+    @Size(min = 6, max = 2000)
     private String senha;
 
     @NotBlank
-    @Size(min = 6, max = 120)
+    @Size(min = 6, max = 2000)
     private String confirmarSenha;
+
+    @Size(max = 100)
+    private String cargo;
 }
 

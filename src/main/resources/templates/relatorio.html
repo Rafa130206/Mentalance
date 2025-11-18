@@ -33,19 +33,19 @@
         <thead>
         <tr>
             <th>Data</th>
-            <th>Humor</th>
-            <th>Energia</th>
-            <th>Sono</th>
-            <th>Observações</th>
+            <th>Emoção</th>
+            <th>Texto</th>
+            <th>Sentimento</th>
+            <th>Resposta</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="checkin : ${checkins}">
-            <td th:text="${#temporals.format(checkin.data, 'dd/MM/yyyy')}">01/01/2025</td>
-            <td th:text="${checkin.humor}">BEM</td>
-            <td th:text="${checkin.energia}">7</td>
-            <td th:text="${checkin.sono}">7</td>
-            <td th:text="${checkin.contexto}">Notas</td>
+            <td th:text="${#temporals.format(checkin.dataCheckin, 'dd/MM/yyyy HH:mm')}">01/01/2025 14:30</td>
+            <td th:text="${checkin.emocao}">Feliz</td>
+            <td th:text="${checkin.texto}">Dia produtivo</td>
+            <td th:text="${checkin.analiseSentimento}">positivo</td>
+            <td th:text="${checkin.respostaGerada}">Resposta gerada</td>
         </tr>
         </tbody>
     </table>
@@ -53,38 +53,28 @@
 
 <script th:inline="javascript">
     const checkins = /*[[${checkins}]]*/ [];
-    const labels = checkins.map(c => c.data);
-    const energia = checkins.map(c => c.energia);
-    const sono = checkins.map(c => c.sono);
+    const labels = checkins.map(c => {
+        const date = new Date(c.dataCheckin);
+        return date.toLocaleDateString('pt-BR');
+    });
+    
+    // Contagem de emoções
+    const emocaoCount = {};
+    checkins.forEach(c => {
+        emocaoCount[c.emocao] = (emocaoCount[c.emocao] || 0) + 1;
+    });
 
-    if (labels.length > 0) {
+    if (Object.keys(emocaoCount).length > 0) {
         const ctx = document.getElementById('chartEvolucao');
         new Chart(ctx, {
-            type: 'line',
+            type: 'bar',
             data: {
-                labels: labels,
-                datasets: [
-                    {
-                        label: 'Energia',
-                        data: energia,
-                        borderColor: '#4F46E5',
-                        tension: 0.3
-                    },
-                    {
-                        label: 'Sono',
-                        data: sono,
-                        borderColor: '#22D3EE',
-                        tension: 0.3
-                    }
-                ]
-            },
-            options: {
-                scales: {
-                    y: {
-                        min: 0,
-                        max: 10
-                    }
-                }
+                labels: Object.keys(emocaoCount),
+                datasets: [{
+                    label: 'Distribuição de Emoções',
+                    data: Object.values(emocaoCount),
+                    backgroundColor: ['#4F46E5', '#22D3EE', '#F97316', '#F43F5E', '#2DD4BF']
+                }]
             }
         });
     }

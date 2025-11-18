@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b5adca9a-a5bd-4c5c-adee-d0b59d16a25f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/config/DataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/config/DataLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/controller/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/controller/CheckinController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/controller/CheckinController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/controller/DashboardController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/controller/RelatorioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/controller/RelatorioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/dto/CheckinRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/dto/CheckinRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/dto/DashboardResumoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/dto/DashboardResumoDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/dto/UsuarioRegistroRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/dto/UsuarioRegistroRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/model/Checkin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/model/Checkin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/model/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/model/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/repository/CheckinRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/repository/CheckinRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/repository/UsuarioRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/repository/UsuarioRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/security/UsuarioDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/security/UsuarioDetailsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/service/CheckinService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/service/CheckinService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/service/MockIAFeedbackService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/service/MockIAFeedbackService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/service/SessaoUsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/service/SessaoUsuarioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/service/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/fiap/mentalance/service/UsuarioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/i18n/messages_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/i18n/messages_en.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/i18n/messages_pt.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/i18n/messages_pt.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/checkin-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/checkin-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/checkin.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/checkin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/dashboard.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/erro.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/erro.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/relatorio.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/relatorio.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/MentalanceApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/MentalanceApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/config/DataLoader.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/config/DataLoader.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/config/InternacionalizacaoConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/config/InternacionalizacaoConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/config/SecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/controller/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/controller/AdminController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/controller/AuthController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/controller/AuthController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/controller/CheckinController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/controller/CheckinController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/controller/DashboardController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/controller/RelatorioController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/controller/RelatorioController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/dto/AnaliseDTO$AnaliseDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/dto/AnaliseDTO$AnaliseDTOBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/dto/AnaliseDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/dto/AnaliseDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/dto/CheckinRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/dto/CheckinRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/dto/DashboardResumoDTO$DashboardResumoDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/dto/DashboardResumoDTO$DashboardResumoDTOBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/dto/DashboardResumoDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/dto/DashboardResumoDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/dto/UsuarioRegistroRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/dto/UsuarioRegistroRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/exception/GlobalExceptionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/exception/GlobalExceptionHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/exception/NegocioException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/exception/NegocioException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/model/Analise.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/model/Analise.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/model/Checkin.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/model/Checkin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/model/EstadoHumor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/model/EstadoHumor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/model/PerfilUsuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/model/PerfilUsuario.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/model/Usuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/model/Usuario.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/repository/AnaliseRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/repository/AnaliseRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/repository/CheckinRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/repository/CheckinRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/repository/UsuarioRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/repository/UsuarioRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/security/UsuarioDetailsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/security/UsuarioDetailsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/service/CheckinService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/service/CheckinService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/service/IAFeedbackService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/service/IAFeedbackService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/service/MockIAFeedbackService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/service/MockIAFeedbackService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/service/SessaoUsuarioService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/service/SessaoUsuarioService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/service/UsuarioService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/fiap/mentalance/service/UsuarioService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/i18n/messages_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/i18n/messages_en.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/i18n/messages_pt.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/i18n/messages_pt.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/checkin-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/checkin-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/checkin.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/checkin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/dashboard.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/erro.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/erro.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/fragments/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/fragments/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/relatorio.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/relatorio.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Rafa130206&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Rafa130206/Mentalance.git&quot;,
+    &quot;accountId&quot;: &quot;ac610ece-90ba-4588-85e0-0de8eaafb87e&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="35f11HhYXfj1L4We4ONxrOf3u54" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.MentalanceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="Mentalance" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="Mentalance" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="Mentalance" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <module name="Mentalance" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b5adca9a-a5bd-4c5c-adee-d0b59d16a25f" name="Changes" comment="" />
+      <created>1763486101423</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1763486101423</updated>
+    </task>
+    <servers />
+  </component>
+</project>

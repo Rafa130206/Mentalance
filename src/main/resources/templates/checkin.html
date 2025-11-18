@@ -14,19 +14,19 @@
         <thead>
         <tr>
             <th>Data</th>
-            <th>Humor</th>
-            <th>Energia</th>
-            <th>Sono</th>
-            <th>Contexto</th>
+            <th>Emoção</th>
+            <th>Texto</th>
+            <th>Sentimento</th>
+            <th>Resposta</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="checkin : ${checkins}">
-            <td th:text="${#temporals.format(checkin.data, 'dd/MM/yyyy')}">01/01/2025</td>
-            <td th:text="${checkin.humor}">BEM</td>
-            <td th:text="${checkin.energia}">7</td>
-            <td th:text="${checkin.sono}">7</td>
-            <td th:text="${checkin.contexto}">Contexto</td>
+            <td th:text="${#temporals.format(checkin.dataCheckin, 'dd/MM/yyyy HH:mm')}">01/01/2025 14:30</td>
+            <td th:text="${checkin.emocao}">Feliz</td>
+            <td th:text="${checkin.texto}">Dia produtivo</td>
+            <td th:text="${checkin.analiseSentimento}">positivo</td>
+            <td th:text="${checkin.respostaGerada}">Resposta gerada</td>
         </tr>
         </tbody>
     </table>

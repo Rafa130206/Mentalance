@@ -13,8 +13,6 @@
     <div class="card">
         <h2 th:text="#{admin.analytics}">Estatísticas</h2>
         <p>Total de check-ins: <strong th:text="${totalCheckins}">0</strong></p>
-        <p>Média de energia: <strong th:text="${#numbers.formatDecimal(mediaEnergia,1,1)}">0</strong></p>
-        <p>Média de sono: <strong th:text="${#numbers.formatDecimal(mediaSono,1,1)}">0</strong></p>
     </div>
 </section>
 
@@ -25,18 +23,18 @@
         <tr>
             <th>Usuário</th>
             <th>Data</th>
-            <th>Humor</th>
-            <th>Energia</th>
-            <th>Sono</th>
+            <th>Emoção</th>
+            <th>Texto</th>
+            <th>Sentimento</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="checkin : ${checkinsRecentes}">
             <td th:text="${checkin.usuario.nome}">Nome</td>
-            <td th:text="${#temporals.format(checkin.data, 'dd/MM/yyyy')}">01/01/2025</td>
-            <td th:text="${checkin.humor}">BEM</td>
-            <td th:text="${checkin.energia}">7</td>
-            <td th:text="${checkin.sono}">7</td>
+            <td th:text="${#temporals.format(checkin.dataCheckin, 'dd/MM/yyyy HH:mm')}">01/01/2025 14:30</td>
+            <td th:text="${checkin.emocao}">Feliz</td>
+            <td th:text="${checkin.texto}">Dia produtivo</td>
+            <td th:text="${checkin.analiseSentimento}">positivo</td>
         </tr>
         </tbody>
     </table>
@@ -57,8 +55,8 @@
         <tr th:each="usuario : ${usuarios}">
             <td th:text="${usuario.nome}">Nome</td>
             <td th:text="${usuario.email}">email@example.com</td>
-            <td th:text="${usuario.perfil}">USUARIO</td>
-            <td th:text="${#temporals.format(usuario.criadoEm, 'dd/MM/yyyy HH:mm')}">01/01/2025</td>
+            <td th:text="${usuario.cargo}">Usuario</td>
+            <td th:text="${#temporals.format(usuario.dataCadastro, 'dd/MM/yyyy HH:mm')}">01/01/2025</td>
         </tr>
         </tbody>
     </table>

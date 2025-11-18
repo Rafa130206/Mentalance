@@ -1,7 +1,6 @@
 package br.com.fiap.mentalance.controller;
 
 import br.com.fiap.mentalance.dto.CheckinRequest;
-import br.com.fiap.mentalance.model.EstadoHumor;
 import br.com.fiap.mentalance.model.Usuario;
 import br.com.fiap.mentalance.service.CheckinService;
 import br.com.fiap.mentalance.service.SessaoUsuarioService;
@@ -32,7 +31,6 @@ public class CheckinController {
     @GetMapping("/checkins/novo")
     public String form(Model model) {
         model.addAttribute("checkin", new CheckinRequest());
-        model.addAttribute("humores", EstadoHumor.values());
         return "checkin-form";
     }
 
@@ -42,14 +40,14 @@ public class CheckinController {
                          Model model,
                          RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("humores", EstadoHumor.values());
             return "checkin-form";
         }
 
         Usuario usuario = sessaoUsuarioService.getUsuarioAtual();
-        checkinService.registrarCheckin(usuario, request);
+        // Por padrão, usa JPA. Para usar procedures Oracle, passe true como terceiro parâmetro
+        checkinService.registrarCheckin(usuario, request, false);
         redirectAttributes.addFlashAttribute("mensagemSucesso", "Check-in registrado com sucesso!");
-        return "redirect:/dashboard";
+        return "redirect:/";
     }
 }
 

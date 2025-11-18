@@ -33,18 +33,25 @@ public class AuthController {
                             BindingResult bindingResult,
                             Model model) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("usuario", request);
             return "register";
         }
 
         try {
+            // Garante que cargo tenha um valor padrão se vazio
+            if (request.getCargo() == null || request.getCargo().trim().isEmpty()) {
+                request.setCargo("Usuario");
+            }
+            
             usuarioService.registrarUsuario(request, false);
+            model.addAttribute("mensagemSucesso", "Conta criada com sucesso. Faça login para continuar.");
+            return "login";
         } catch (Exception ex) {
-            model.addAttribute("mensagemErro", ex.getMessage());
+            model.addAttribute("usuario", request);
+            model.addAttribute("mensagemErro", "Erro ao criar conta: " + ex.getMessage());
+            ex.printStackTrace(); // Log do erro no console
             return "register";
         }
-
-        model.addAttribute("mensagemSucesso", "Conta criada com sucesso. Faça login para continuar.");
-        return "login";
     }
 }
 

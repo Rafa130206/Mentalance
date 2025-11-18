@@ -1,22 +1,17 @@
 package br.com.fiap.mentalance.service;
 
-import br.com.fiap.mentalance.dto.AnaliseDTO;
 import br.com.fiap.mentalance.dto.CheckinRequest;
 import br.com.fiap.mentalance.dto.DashboardResumoDTO;
 import br.com.fiap.mentalance.exception.NegocioException;
-import br.com.fiap.mentalance.model.Analise;
 import br.com.fiap.mentalance.model.Checkin;
-import br.com.fiap.mentalance.model.EstadoHumor;
 import br.com.fiap.mentalance.model.Usuario;
-import br.com.fiap.mentalance.repository.AnaliseRepository;
 import br.com.fiap.mentalance.repository.CheckinRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.temporal.WeekFields;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -27,102 +22,118 @@ import java.util.stream.Collectors;
 public class CheckinService {
 
     private final CheckinRepository checkinRepository;
-    private final AnaliseRepository analiseRepository;
-    private final IAFeedbackService iaFeedbackService;
+    private final OracleProcedureService oracleProcedureService;
 
     @Transactional
-    public Checkin registrarCheckin(Usuario usuario, CheckinRequest dto) {
+    public Checkin registrarCheckin(Usuario usuario, CheckinRequest dto, boolean usarProcedure) {
         if (usuario == null) {
             throw new NegocioException("Usuário não encontrado para registro de check-in.");
         }
 
-        Checkin checkin = new Checkin();
-        checkin.setUsuario(usuario);
-        checkin.setHumor(dto.getHumor());
-        checkin.setEnergia(dto.getEnergia());
-        checkin.setSono(dto.getSono());
-        checkin.setContexto(dto.getContexto());
+        // Gera análise de sentimento e resposta baseado no texto
+        String analiseSentimento = determinarSentimento(dto.getTexto());
+        String respostaGerada = gerarResposta(dto.getTexto(), analiseSentimento);
 
-        Checkin salvo = checkinRepository.save(checkin);
+        LocalDateTime agora = LocalDateTime.now();
 
-        Analise analise = iaFeedbackService.gerarAnalise(salvo);
-        Analise analiseSalva = analiseRepository.save(analise);
-        salvo.setAnalise(analiseSalva);
+        if (usarProcedure) {
+            // Tenta usar sequence, se não existir usa MAX + 1
+            Long nextId;
+            try {
+                nextId = oracleProcedureService.obterProximoIdSequence("CHECKIN_SEQ");
+            } catch (Exception e) {
+                nextId = checkinRepository.getNextId();
+            }
+            
+            // Usa a procedure Oracle
+            oracleProcedureService.inserirCheckin(
+                    nextId, agora, dto.getEmocao(), dto.getTexto(), 
+                    analiseSentimento, respostaGerada, usuario.getId()
+            );
+            // Busca o checkin recém-criado
+            return checkinRepository.findById(nextId)
+                    .orElseThrow(() -> new NegocioException("Erro ao criar check-in"));
+        } else {
+            // Usa JPA padrão (usa sequence automaticamente)
+            Checkin checkin = new Checkin();
+            checkin.setUsuario(usuario);
+            checkin.setDataCheckin(agora);
+            checkin.setEmocao(dto.getEmocao());
+            checkin.setTexto(dto.getTexto());
+            checkin.setAnaliseSentimento(analiseSentimento);
+            checkin.setRespostaGerada(respostaGerada);
+            return checkinRepository.save(checkin);
+        }
+    }
 
-        return salvo;
+    private String determinarSentimento(String texto) {
+        String textoLower = texto.toLowerCase();
+        if (textoLower.contains("feliz") || textoLower.contains("bom") || textoLower.contains("ótimo") || 
+            textoLower.contains("excelente") || textoLower.contains("bem")) {
+            return "positivo";
+        } else if (textoLower.contains("triste") || textoLower.contains("ruim") || 
+                   textoLower.contains("estressado") || textoLower.contains("cansado") || 
+                   textoLower.contains("ansioso")) {
+            return "negativo";
+        }
+        return "neutro";
+    }
+
+    private String gerarResposta(String texto, String sentimento) {
+        return switch (sentimento) {
+            case "positivo" -> "Continue assim! Mantenha o foco e a energia positiva.";
+            case "negativo" -> "Lembre-se de fazer pausas e cuidar de si mesmo. Você está fazendo o seu melhor.";
+            default -> "Obrigado por compartilhar. Continue acompanhando seu bem-estar.";
+        };
     }
 
     public List<Checkin> listarRecentes(Usuario usuario) {
-        return checkinRepository.findTop7ByUsuarioOrderByDataDesc(usuario);
+        List<Checkin> todos = checkinRepository.findAllByUsuarioOrderByDataDesc(usuario);
+        return todos.stream().limit(7).toList();
     }
 
     public List<Checkin> listarTodos(Usuario usuario) {
         return checkinRepository.findAllByUsuarioOrderByDataDesc(usuario);
     }
 
-    public List<AnaliseDTO> listarAnalises(Usuario usuario) {
-        return listarTodos(usuario).stream()
-                .filter(checkin -> checkin.getAnalise() != null)
-                .map(checkin -> {
-                    Analise analise = checkin.getAnalise();
-                    return AnaliseDTO.builder()
-                            .checkinId(checkin.getId())
-                            .data(checkin.getData())
-                            .resumo(analise.getResumo())
-                            .recomendacoes(analise.getRecomendacoes())
-                            .sentimentos(analise.getSentimentos())
-                            .build();
-                })
-                .toList();
-    }
-
     public DashboardResumoDTO gerarResumoSemanal(Usuario usuario) {
-        LocalDate hoje = LocalDate.now();
-        LocalDate inicioSemana = hoje.with(WeekFields.of(Locale.getDefault()).dayOfWeek(), 1);
+        LocalDateTime agora = LocalDateTime.now();
+        LocalDateTime inicioSemana = agora.with(WeekFields.of(Locale.getDefault()).dayOfWeek(), 1)
+                .withHour(0).withMinute(0).withSecond(0);
 
-        List<Checkin> semana = checkinRepository.buscarPorPeriodo(usuario, inicioSemana, hoje);
+        List<Checkin> semana = checkinRepository.buscarPorPeriodo(usuario, inicioSemana, agora);
 
         if (semana.isEmpty()) {
             return DashboardResumoDTO.builder()
                     .totalCheckins(0)
                     .mediaEnergia(0)
                     .mediaSono(0)
-                    .humorPredominante(null)
+                    .emocaoPredominante(null)
                     .distribuicaoHumor(Map.of())
                     .build();
         }
 
-        Map<EstadoHumor, Long> contagemPorHumor = semana.stream()
-                .collect(Collectors.groupingBy(Checkin::getHumor, Collectors.counting()));
+        Map<String, Long> contagemPorEmocao = semana.stream()
+                .collect(Collectors.groupingBy(Checkin::getEmocao, Collectors.counting()));
 
-        EstadoHumor humorPredominante = contagemPorHumor.entrySet().stream()
+        // Encontra a emoção predominante
+        String emocaoPredominante = contagemPorEmocao.entrySet().stream()
                 .max(Map.Entry.comparingByValue())
                 .map(Map.Entry::getKey)
                 .orElse(null);
 
-        double mediaEnergia = semana.stream()
-                .mapToInt(Checkin::getEnergia)
-                .average()
-                .orElse(0);
-
-        double mediaSono = semana.stream()
-                .mapToInt(Checkin::getSono)
-                .average()
-                .orElse(0);
-
-        Map<String, Long> distribuicaoHumor = contagemPorHumor.entrySet().stream()
-                .collect(Collectors.toMap(entry -> entry.getKey().name(), Map.Entry::getValue));
+        Map<String, Long> distribuicaoHumor = contagemPorEmocao;
 
         return DashboardResumoDTO.builder()
                 .totalCheckins(semana.size())
-                .mediaEnergia(mediaEnergia)
-                .mediaSono(mediaSono)
-                .humorPredominante(humorPredominante)
+                .mediaEnergia(0) // Não temos mais energia no novo modelo
+                .mediaSono(0)   // Não temos mais sono no novo modelo
+                .emocaoPredominante(emocaoPredominante)
                 .distribuicaoHumor(distribuicaoHumor)
                 .build();
     }
 
-    public List<Checkin> listarPorPeriodo(Usuario usuario, LocalDate inicio, LocalDate fim) {
+    public List<Checkin> listarPorPeriodo(Usuario usuario, LocalDateTime inicio, LocalDateTime fim) {
         return checkinRepository.buscarPorPeriodo(usuario, inicio, fim);
     }
 
@@ -130,22 +141,9 @@ public class CheckinService {
         return checkinRepository.count();
     }
 
-    public double mediaEnergiaGlobal() {
-        return checkinRepository.findAll().stream()
-                .mapToInt(Checkin::getEnergia)
-                .average()
-                .orElse(0);
-    }
-
-    public double mediaSonoGlobal() {
-        return checkinRepository.findAll().stream()
-                .mapToInt(Checkin::getSono)
-                .average()
-                .orElse(0);
-    }
-
     public List<Checkin> listarRecentesGlobal() {
-        return checkinRepository.findTop10ByOrderByDataDesc();
+        List<Checkin> todos = checkinRepository.findTop10ByOrderByDataDesc();
+        return todos.stream().limit(10).toList();
     }
 }
 

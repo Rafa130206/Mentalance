@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentalance - Início</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div class="container" style="max-width: 800px; text-align: center;">
+    <h1 style="margin-bottom: 2rem;">Mentalance</h1>
+    <p style="font-size: 1.2rem; margin-bottom: 3rem; color: #6B7280;">
+        Sistema de Gestão de Bem-Estar Emocional
+    </p>
+
+    <div th:if="${mensagemSucesso}" class="alert alert--success" th:text="${mensagemSucesso}"></div>
+    <div th:if="${mensagemErro}" class="alert alert--error" th:text="${mensagemErro}"></div>
+
+    <section class="grid grid--2" style="gap: 2rem; margin-top: 3rem;">
+        <div class="card" style="padding: 2rem;">
+            <h2 style="margin-top: 0;">Check-in</h2>
+            <p style="margin-bottom: 1.5rem; color: #6B7280;">
+                Registre seu estado emocional e sentimentos do dia
+            </p>
+            <a th:href="@{/checkins/novo}" 
+               style="display: inline-block; padding: 0.75rem 2rem; background: var(--primary); color: white; text-decoration: none; border-radius: 8px; font-weight: 600;">
+                Novo Check-in
+            </a>
+        </div>
+
+        <div class="card" style="padding: 2rem;">
+            <h2 style="margin-top: 0;">Análise Semanal</h2>
+            <p style="margin-bottom: 1.5rem; color: #6B7280;">
+                Registre uma análise semanal do seu bem-estar
+            </p>
+            <a th:href="@{/analise-semanal/novo}" 
+               style="display: inline-block; padding: 0.75rem 2rem; background: var(--secondary); color: white; text-decoration: none; border-radius: 8px; font-weight: 600;">
+                Nova Análise
+            </a>
+        </div>
+    </section>
+
+    <div style="margin-top: 3rem;">
+        <p style="color: #6B7280;">
+            <span sec:authorize="isAuthenticated()">
+                Logado como: <strong sec:authentication="name"></strong> | 
+                <a th:href="@{/logout}" style="color: var(--primary);">Sair</a>
+            </span>
+            <span sec:authorize="!isAuthenticated()">
+                <a th:href="@{/login}" style="color: var(--primary);">Fazer Login</a>
+            </span>
+        </p>
+    </div>
+</div>
+</body>
+</html>
+

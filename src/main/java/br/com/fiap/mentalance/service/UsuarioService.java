@@ -1,7 +1,6 @@
 package br.com.fiap.mentalance.service;
 
 import br.com.fiap.mentalance.dto.UsuarioRegistroRequest;
-import br.com.fiap.mentalance.model.PerfilUsuario;
 import br.com.fiap.mentalance.model.Usuario;
 import br.com.fiap.mentalance.repository.UsuarioRepository;
 import br.com.fiap.mentalance.exception.NegocioException;
@@ -18,23 +17,41 @@ public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
     private final PasswordEncoder passwordEncoder;
+    private final OracleProcedureService oracleProcedureService;
 
     @Transactional
-    public Usuario registrarUsuario(UsuarioRegistroRequest request, boolean administrador) {
+    public Usuario registrarUsuario(UsuarioRegistroRequest request, boolean usarProcedure) {
         validarRegistro(request);
 
-        Usuario usuario = new Usuario();
-        usuario.setNome(request.getNome());
-        usuario.setEmail(request.getEmail());
-        usuario.setUsername(request.getUsername());
-        usuario.setSenha(passwordEncoder.encode(request.getSenha()));
-        usuario.setPerfil(administrador ? PerfilUsuario.ADMIN : PerfilUsuario.USUARIO);
+        String senhaEncoded = passwordEncoder.encode(request.getSenha());
+        String cargo = request.getCargo() != null && !request.getCargo().isEmpty() 
+                ? request.getCargo() 
+                : "Usuario";
 
-        return usuarioRepository.save(usuario);
-    }
-
-    public Optional<Usuario> buscarPorUsername(String username) {
-        return usuarioRepository.findByUsername(username);
+        if (usarProcedure) {
+            // Tenta usar sequence, se não existir usa MAX + 1
+            Long nextId;
+            try {
+                nextId = oracleProcedureService.obterProximoIdSequence("USUARIO_SEQ");
+            } catch (Exception e) {
+                nextId = usuarioRepository.getNextId();
+            }
+            
+            // Usa a procedure Oracle
+            oracleProcedureService.inserirUsuario(nextId, request.getNome(), request.getEmail(), 
+                    senhaEncoded, cargo);
+            // Busca o usuário recém-criado
+            return usuarioRepository.findById(nextId)
+                    .orElseThrow(() -> new NegocioException("Erro ao criar usuário"));
+        } else {
+            // Usa JPA padrão (usa sequence automaticamente)
+            Usuario usuario = new Usuario();
+            usuario.setNome(request.getNome());
+            usuario.setEmail(request.getEmail());
+            usuario.setSenha(senhaEncoded);
+            usuario.setCargo(cargo);
+            return usuarioRepository.save(usuario);
+        }
     }
 
     public Optional<Usuario> buscarPorEmail(String email) {
@@ -56,10 +73,6 @@ public class UsuarioService {
 
         if (usuarioRepository.existsByEmail(request.getEmail())) {
             throw new NegocioException("E-mail já cadastrado");
-        }
-
-        if (usuarioRepository.existsByUsername(request.getUsername())) {
-            throw new NegocioException("Nome de usuário já cadastrado");
         }
     }
 }

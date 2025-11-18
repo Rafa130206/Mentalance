@@ -21,6 +21,20 @@ Plataforma web de bem-estar emocional construída com Spring Boot e Thymeleaf. P
 
 ## Executando o projeto
 
+### Pré-requisitos
+
+1. Java 17 instalado
+2. Oracle Database configurado
+3. Scripts SQL executados (veja `GUIA_EXECUCAO.md`)
+
+### Executar
+
+**Windows:**
+```bash
+.\mvnw.cmd spring-boot:run
+```
+
+**Linux/Mac:**
 ```bash
 ./mvnw spring-boot:run
 ```
@@ -29,21 +43,27 @@ Aplicação disponível em `http://localhost:8080`.
 
 ### Credenciais iniciais
 
-- usuário: `admin`
-- senha: `admin123`
+- **Email**: `admin@mentalance.com`
+- **Senha**: `admin123`
 
-Faça login, crie novos usuários pelo formulário de registro e explore o dashboard.
+> ⚠️ **IMPORTANTE**: O sistema agora usa **EMAIL** em vez de username para login.
 
 ## Configuração do banco
 
-Por padrão o projeto utiliza H2 em memória. Para usar Oracle, ajuste `application.properties`:
+O projeto está configurado para usar **Oracle Database**. 
 
-```
-spring.datasource.url=jdbc:oracle:thin:@host:porta:sid
-spring.datasource.username=USUARIO
-spring.datasource.password=SENHA
-spring.datasource.driverClassName=oracle.jdbc.OracleDriver
-```
+### Passos para configurar:
+
+1. Execute o script `mentalance.sql` no Oracle
+2. Execute o script `src/main/resources/db/oracle-sequences.sql`
+3. As credenciais já estão configuradas em `application.properties`
+
+### Endpoints REST API
+
+- `GET /api/oracle/exportar-json` - Exporta dataset via procedure Oracle
+- `GET /api/oracle/dataset-json` - Obtém dataset via função Oracle
+
+📖 **Para instruções detalhadas de execução e testes, consulte o [GUIA_EXECUCAO.md](GUIA_EXECUCAO.md)**
 
 ## Próximos passos sugeridos
 
